@@ -16,8 +16,9 @@ async function shortenUrl(req, res) {
         let baseUrl = req.body.url;
         let shortUrlBase = 'http://wh.ly/';
         let validUrl = isValidUrl(baseUrl, VALID_URL_REGEX);
-
-        if(validUrl) {
+        let existingRecord = await Url.findOne({shortUrl: baseUrl});
+        
+        if(validUrl && !existingRecord) {
             let shortUrl = createUrl(shortUrlBase, ADDED_CHARS);
             let url = new Url({baseUrl, shortUrl});
             await url.save()
