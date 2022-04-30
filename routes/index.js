@@ -4,10 +4,10 @@ const indexCtrl = require('../controllers/index');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { shortUrl: null, baseUrl:null });
 });
 
 router.post('/shorten', indexCtrl.shortenUrl);
-router.post('/lengthen', indexCtrl.lengthenUrl);
+router.get('/shorten', indexCtrl.lengthenUrl);
 
 module.exports = router;

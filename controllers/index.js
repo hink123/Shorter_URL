@@ -1,6 +1,6 @@
 const { base } = require('../models/url');
 const Url = require('../models/url');
-const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+const ALPHABET = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
 module.exports = {
     shortenUrl,
@@ -14,13 +14,13 @@ async function shortenUrl(req, res) {
         let randomNumb;
 
         for(let i = 0; i < 5; i++) {
-            randomNumb = Math.floor(Math.random()*alphabet.length);
-            shortUrl += alphabet[randomNumb];
+            randomNumb = Math.floor(Math.random()*ALPHABET.length);
+            shortUrl += ALPHABET[randomNumb];
         }
 
         let url = new Url({baseUrl, shortUrl});
         await url.save()
-        res.render('index');
+        res.render('index', {shortUrl, baseUrl: null});
     }
      catch (err) {
         console.log('Oops something went wrong!')
@@ -30,10 +30,10 @@ async function shortenUrl(req, res) {
 
 async function lengthenUrl(req, res) {
     try {
-        let shortUrl = req.body.url;
+        let shortUrl = req.query.url;
         let urlDoc = await Url.findOne({shortUrl});
         let baseUrl = urlDoc.baseUrl;
-        res.render('index');
+        res.render('index', {baseUrl, shortUrl: null});
     } 
     catch (err) {
         console.log('Oops something went wrong!')
