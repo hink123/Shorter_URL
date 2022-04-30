@@ -1,11 +1,30 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title>Diameter Health Project</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <h1>Diameter Health Project</h1>
+
+    <div>
+      <form action="/shorten" method="POST">
+          <h4>Edit the Text</h4>
+          <textarea name="url" cols="45" rows="5" ></textarea>
+          <div>
+              <button type="submit">Shorten</button>
+          </div>
+      </form>
+  </div>
+
+    <div>
+      <form action="/lengthen" method="POST">
+          <h4>Edit the Text</h4>
+          <textarea name="url" cols="45" rows="5" ></textarea>
+          <div class="bttn">
+              <button type="submit">Lengthen</button>
+          </div>
+      </form>
+  </div>
   </body>
 </html>
