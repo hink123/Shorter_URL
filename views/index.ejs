@@ -17,14 +17,25 @@
       </form>
   </div>
 
+  <%if (shortUrl) { %>
+    <h4>Here is your shortened URL</h4>
+    <h5><%= shortUrl %></h4>
+  <% } %>
+
     <div>
-      <form action="/lengthen" method="POST">
+      <form action="/shorten" method="GET">
           <h4>Edit the Text</h4>
           <textarea name="url" cols="45" rows="5" ></textarea>
-          <div class="bttn">
+          <div>
               <button type="submit">Lengthen</button>
           </div>
       </form>
   </div>
+
+  <%if (baseUrl) { %>
+    <h4>Here is your Base URL</h4>
+    <h5><%= baseUrl %></h4>
+  <% } %>
+
   </body>
 </html>
