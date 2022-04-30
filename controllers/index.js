@@ -1,8 +1,10 @@
 const { base } = require('../models/url');
 const Url = require('../models/url');
+
 const ALPHABET = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 const VALID_URL_REGEX = /^(http(s)?:\/\/).*/;
 const VALID_SHORT_URL = /^(http:\/\/wh\.ly\/)[a-z]{5}/;
+const ADDED_CHARS = 5;
 
 module.exports = {
     shortenUrl,
@@ -12,15 +14,12 @@ module.exports = {
 async function shortenUrl(req, res) {
     try {
         let baseUrl = req.body.url;
-        let shortUrl = 'http://wh.ly/';
-        let randomNumb;
+        let shortUrlBase = 'http://wh.ly/';
         let validUrl = isValidUrl(baseUrl, VALID_URL_REGEX);
 
         if(validUrl) {
-            for(let i = 0; i < 5; i++) {
-                randomNumb = Math.floor(Math.random()*ALPHABET.length);
-                shortUrl += ALPHABET[randomNumb];
-            }
+            let shortUrl = createUrl(shortUrlBase, ADDED_CHARS);
+            let url = new Url({baseUrl, shortUrl});
             await url.save()
             return res.render('index', {shortUrl, baseUrl: null, err: null});
         } else {
@@ -56,3 +55,12 @@ async function lengthenUrl(req, res) {
 function isValidUrl(url, regex) {
     return url.match(regex);
 }
+
+function createUrl(shortUrlBase, addedChars) {
+    let randomNumb;
+    for(let i = 0; i < addedChars; i++) {
+        randomNumb = Math.floor(Math.random()*ALPHABET.length);
+        shortUrlBase += ALPHABET[randomNumb];
+    }
+    return shortUrlBase;
+} 
