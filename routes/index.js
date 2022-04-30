@@ -4,7 +4,7 @@ const indexCtrl = require('../controllers/index');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { shortUrl: null, baseUrl:null });
+  res.render('index', { shortUrl: null, baseUrl:null, err: null });
 });
 
 router.post('/shorten', indexCtrl.shortenUrl);
