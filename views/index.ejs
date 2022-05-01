@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Diameter Health Project</title>
+    <title>Short URL Generator</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1>Diameter Health Project</h1>
+    <h1>Short URL Generator</h1>
 
     <div>
       <form action="/shorten" method="POST">
-          <h4>Submit a URL below to have it Shortened</h4>
+          <h4>Submit a URL below to have it shortened</h4>
           <input type="text" name="url" style="width: 300px" required></textarea>
           <div>
               <button type="submit">Shorten</button>
@@ -24,7 +24,7 @@
 
     <div>
       <form action="/shorten" method="GET">
-          <h4>Sumbit a Shortened URL below to return the Base URL</h4>
+          <h4>Sumbit a shortened URL below to return the original URL</h4>
           <p>The URL format should start with http://wh.ly/</p>
           <input type="text" name="url" style="width: 300px" required></input>
           <div>
