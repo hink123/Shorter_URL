@@ -24,17 +24,17 @@
 
     <div>
       <form action="/shorten" method="GET">
-          <h4>Sumbit a shortened URL below to return the original URL</h4>
+          <h4>Submit a shortened URL below to return the original URL</h4>
           <p>The URL format should start with http://wh.ly/</p>
           <input type="text" name="url" style="width: 300px" required></input>
           <div>
-              <button type="submit">Return Base</button>
+              <button type="submit">Return Original</button>
           </div>
       </form>
   </div>
 
   <%if (baseUrl) { %>
-    <h4>Here is your Base URL</h4>
+    <h4>Here is the original URL</h4>
     <h5 style="color:green"><%= baseUrl %></h4>
   <% } else if (err) { %>
     <h4 style="color:red">Error: <%= err %></h4>

@@ -48,7 +48,7 @@ async function lengthenUrl(req, res) {
             return res.render('index', {baseUrl: null, shortUrl: null, err: 'Invalid Short URL'});
         }
         if(!urlDoc) {
-            return res.render('index', {baseUrl: null, shortUrl: null, err: 'Base URL Not Found'});
+            return res.render('index', {baseUrl: null, shortUrl: null, err: 'Original URL Not Found'});
         } else {
             //Grab the baseUrl from the database document
             let baseUrl = urlDoc.baseUrl;
